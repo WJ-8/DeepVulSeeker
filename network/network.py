@@ -10,8 +10,6 @@ def convolutional2D(x,num_filters,kernel_size,resampling,strides=2):
         x = keras.layers.UpSampling2D()(x)
         x = keras.layers.Conv2D(num_filters, kernel_size=kernel_size, strides=1, padding='same',
                        kernel_initializer=tf.keras.initializers.RandomNormal())(x)
-        #x = keras.layers.Conv2DTranspose(num_filters,kernel_size=kernel_size, strides=2,  padding='same',
-        #              kernel_initializer=keras.initializers.RandomNormal())(x)
     elif resampling is 'down':
         x = keras.layers.Conv2D(num_filters, kernel_size=kernel_size, strides=strides,  padding='same',
                        kernel_initializer=tf.keras.initializers.RandomNormal())(x)
@@ -19,10 +17,7 @@ def convolutional2D(x,num_filters,kernel_size,resampling,strides=2):
 
 
 def ResBlock(x, num_filters, resampling, strides=2):
-    # F1,F2,F3 = num_filters
     X_shortcut = x
-
-    # //up or down
     x = convolutional2D(x, num_filters, kernel_size=(3, 3), resampling=resampling, strides=strides)
 
     # //BN_relu
