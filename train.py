@@ -108,17 +108,5 @@ history = model.fit(
     epochs=400, batch_size=16, verbose=2, callbacks=[checkpoints])
 
 score = model.evaluate([x_test_emb, x_test_ast, x_test_dfg, x_test_cfg], y_test, verbose=0, batch_size=32)
-result = model.predict([x_test_emb, x_test_ast, x_test_dfg, x_test_cfg], batch_size=128)
-for i in range(len(result)):
-    result[i] = 1 if result[i] >= 0.5 else 0
-# print(result)
-ls_result=result.tolist()
-# print(ls_result)
-with open("case/vuldeeper_result.txt","w") as f:
-    for i in ls_result:
-        f.write(str(int(i[0]))+"\n")
-print(accuracy_score(y_test, result))
-print(f1_score(y_test, result))
-model.save('model/magic_model.h5')
 print(score)
 print(model.metrics_names)
