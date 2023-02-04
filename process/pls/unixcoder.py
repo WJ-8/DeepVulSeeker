@@ -42,7 +42,7 @@ class UniXcoder(nn.Module):
         assert mode in ["<encoder-only>", "<decoder-only>", "<encoder-decoder>"]
 
         tokenizer = self.tokenizer
-        with open("F:\\zsw\\pythonProject\\special_tokens_list_test2.txt", "r+", encoding="utf8") as b:
+        with open("../../data/special.txt, "r+", encoding="utf8") as b:
             data = b.readlines()
             list_data = data[0].split(" ")
             special_tokens_dict = {'additional_special_tokens': list_data}

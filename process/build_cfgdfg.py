@@ -403,27 +403,6 @@ def create_mask(code, token_pos, paths, max_source_length, last_idx, eos_positio
     mask = mask + mask_statement + mask_df
     return mask
 
-
-""" def get_code_mask(code):
-    tree = parser.parse(bytes(code, "utf8"))
-    root_node = tree.root_node
-    nodes = get_control_flow(root_node, code.split('\n'))
-    head = find_head(nodes)
-    code_list = []
-    result = []
-    result = get_path(head, code_list, result)
-    statement_result = []
-    get_statement(root_node, statement_result, code.split('\n'))
-    for path in result:
-        for node in path:
-            s, e = get_token_position(node, code.split('\n'))
-            node.start = s
-            node.end = e
-    df_path, states = get_data_flow(root_node, {}, code.split('\n'))
-    mask = create_mask(code,result, max_source_length, last_idx,statement_result, df_path)
-    return mask """
-
-
 def get_statement(root_node, result, code):
     if root_node.start_point[0] == root_node.end_point[0]:
         node = Node(root_node.start_point, root_node.end_point)
@@ -714,11 +693,6 @@ def create_dfs_print_matrix(filename):
             node.start = s
             node.end = e
     df_path, states = get_data_flow(test_root_node, {}, filename.split('\n'))
-    """———————————显示所有节点信息——————————————
-    for i in range(0, int(len(df_path))):
-        print(df_path[i])
-    print(test_root_node)
-    print(test_nodes)"""
     return df_path
 
 
@@ -783,14 +757,7 @@ def create_cfg_matrix():
     connect_node_cfg(cfg_matrix, test_root_node)
     return cfg_matrix
 
-
-# 输入 filename为code：
-# filename = """int a=5;int c=a+b;if(c>4)c=1;return 0 ;"""
-# filename = get_str_code(filename)
-# create_dfs_print_matrix(filename)
-# jsonl文件
-
-with open("F:\\zsw\\test2\\test.jsonl", "r+", encoding="utf8") as f: #输入路径
+with open("../data/raw/FFmpeg/test.jsonl", "r+", encoding="utf8") as f: #输入路径
     c = f.readlines()
     time = 0
     for i in c:
@@ -817,23 +784,6 @@ with open("F:\\zsw\\test2\\test.jsonl", "r+", encoding="utf8") as f: #输入路�
             ccfg = np.concatenate((ccfg,cfg_matrix),axis=0)
         print(ccfg.shape)
         print(ddfg.shape)
-    np.save('F:\\zsw\\test2\\npy\\test_cfg.npy',ccfg) #输出路径
-    np.save('F:\\zsw\\test2\\npy\\test_dfg.npy',ddfg)
+    np.save('../data/cfg/test_cfg.npy',ccfg) #输出路径
+    np.save('../data/dfg/test_dfg.npy',ddfg)
 f.close()
-
-# tree = parser.parse(bytes(filename, "utf8"))
-# test_root_node = tree.root_node
-# # print(filename)
-# test_nodes = get_control_flow(test_root_node, filename.split('\n'))
-#
-# test_node_number, test_mask_cfg, test_mask_cfg_1 = find_node_cfg(test_root_node, 0)
-# # print(test_node_number)
-#
-# tree = parser.parse(bytes(filename, "utf8"))
-# test_root_node = tree.root_node
-# # print(filename)
-# test_nodes = get_control_flow(test_root_node, filename.split('\n'))
-
-# print(test_mask_cfg)
-# print(test_mask_cfg_1)
-# print(create_cfg_matrix(test_node_number))

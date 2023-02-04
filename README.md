@@ -2,30 +2,34 @@
  implementation of DeepVulSeeker
  ## Data prepara
  Please prepare the jsonl files for the training set, validation set and test set.
+The dataset processing file is in `process`  directory
+All programs are running in pyCharm
+
  ### build y
- Need to change the input path and output path in build_y.py
+
  ```python
- python build_y.py
+ run build_y.py
  ```
  ### build ast
  ```python
- python build_ast.py
+run slice_raw.py
+run build_dot.py
+run build_ast.py
  ```
- #### ouput DOT from joern
- 
- #### parse Dot
+
  ### build cfg and dfg
  ```python
- python build_cfgdfg.py
+run build_cfgdfg.py
  ```
  ### build pls
  #### get special words
  ```python
- python special word.py
+run Specialword.py
  ```
  ## train
+In the root directory
  ```python
- python train.py
+run train.py
  ```
  
  ```
