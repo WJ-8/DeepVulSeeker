@@ -32,7 +32,3 @@ In the root directory
 run train.py
  ```
  
- ```
-arxiv:
-https://arxiv.org/abs/2211.13097
-```
