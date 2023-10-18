@@ -70,8 +70,8 @@ att_emb = MyMultiHeadAttention(400, 3)(input_emb)
 # 对emb池化(使用零填充到200，200
 reshape_emb = Reshape((200, 2))(att_emb)
 
-combine1 = concatenate([input_dfg, input_cfg])
-combine2 = concatenate([reshape_emb, input_ast])
+combine1 = concatenate([att_dfg, att_cfg])
+combine2 = concatenate([reshape_emb, att_ast])
 combine3 = concatenate([combine2, combine1])
 
 expend = tf.expand_dims(combine3, axis=-1)
