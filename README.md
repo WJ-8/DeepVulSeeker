@@ -1,5 +1,8 @@
 # DeepVulSeeker
  implementation of DeepVulSeeker
+
+ ## Notice
+ We will rebulid our project in several months using pytorch.
  ## Data prepara
  Please prepare the jsonl files for the training set, validation set and test set.
 The dataset processing file is in `process`  directory
